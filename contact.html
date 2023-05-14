@@ -1,0 +1,101 @@
+<html>
+  <head>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+       <meta name="viewport" content="width=device-width">
+    <title>Contact - Staff Team</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="description" content="You Stanky Human!! hehe (jkjk)">
+    <meta name="theme-color" content="#0000FF">
+    <link rel="icon" type="image/png" sizes="300x250" href="images/logo.png">
+  <meta property="og:image"
+    content="https://cdn.discordapp.com/attachments/906585889625493564/907024028479422504/depress.gif?width=96&height=96" />
+  <meta property="og:image:width" content="1024" />
+  <meta property="og:image:height" content="1024" />
+  <meta property="og:image:type" content="image/gif" />
+  </head>
+  <body style="background-color: #222E50;">
+  <body class="container mt-5">
+   
+    <div id="rcorners1">
+    <form onsubmit="sendContact(event)">
+            <div class="mb-3">
+        <label for="Name" class="form-label">Enter your name</label>
+        <textarea class="form-control" id="Name"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="emailInput" class="form-label">Enter your email address</label>
+        <input type="email" class="form-control" id="emailInput">
+      </div>
+
+   <div class="mb-3">
+        <label for="messageInput" class="form-label">Enter your message</label>
+        <textarea class="form-control" id="messageInput" rows="3"></textarea>
+      </div> 
+      
+    
+      <button id="myButton" type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    </div>
+    <script>
+      async function sendContact(ev) {
+        ev.preventDefault();
+
+        const senderEmail = document
+          .getElementById('emailInput').value;    const senderMessage = document
+          .getElementById('messageInput').value;
+        const Names = document
+          .getElementById('Name').value;
+        const webhookBody = {
+          embeds: [{
+            title: 'Bible Scirpt',
+            fields: [
+               { name: 'Name:', value: Names },
+              { name: 'Email:', value: senderEmail },
+              { name: 'Message:', value: senderMessage },
+
+            ]
+          }],
+          footer: 'contact.daylndev.me',
+        };
+
+        const webhookUrl = 'https://discord.com/api/webhooks/959987454583144478/b9lo6OrM0Rnl7ul7a8sKRyjRu025sdAVJGxokEIabgqDZmRe8v_A79NlmeqOudUaNRWL';
+
+        const response = await fetch(webhookUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(webhookBody),
+        });
+
+        if (response.ok) {
+          alert('I have received your message!');
+        } else {
+          alert('There was an error! Try again later!');
+        }
+      }
+
+    </script>
+<script src="https://smtpjs.com/v3/smtp.js">
+</script>
+    <script>
+    Email.send({
+    SecureToken : "8E3C1427999EA17722B665DB7EA2D664AFB82D85B6A48C3162191DE6A45FBDDF1B6867D3A11F3008205585BB53329BA2",
+    To : senderEmail,
+    From : "noreply@hocushost.tk",
+    Subject : "Hello!, We have recived you contact message!",
+    Body : "Hello, I am Robert the AI-System for the Days Contact System, We would love to thank you for contacting our team! we would love to get you a coupon to Days merch! here is your code: supportsthanksyou2",
+	Attachments : [
+	{
+		name : "smtpjs.png",
+		path : "https://networkprogramming.files.wordpress.com/2017/11/smtpjs.png"
+	}]
+}).then(
+  message => alert(message)
+);
+    </script>
+    
+  </body>
+</html>
